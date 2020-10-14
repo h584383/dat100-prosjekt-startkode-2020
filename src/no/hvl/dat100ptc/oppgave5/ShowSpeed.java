@@ -19,6 +19,7 @@ public class ShowSpeed extends EasyGraphics {
 	private GPSPoint[] gpspoints;
 	
 	public ShowSpeed() {
+		
 
 		String filename = JOptionPane.showInputDialog("GPS data filnavn: ");
 		gpscomputer = new GPSComputer(filename);
@@ -47,11 +48,22 @@ public class ShowSpeed extends EasyGraphics {
 		double[] speeds = gpscomputer.speeds();
 
 		int x = MARGIN,y;
-
-		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-	
-		// TODO - SLUTT
+		for (int i = 0; i < speeds.length; i++) {
+			
+			drawLine(x + i * 2, ybase, x + i * 2, (int) (ybase - speeds[i]));
+			
+		}
+		
+		//må ha x og * 2 pga vi har marg og mellomrom mellom x-verdiene: x + i * 2
+		int sisteX = x + speeds.length * 2;
+		setColor(0, 111, 200);
+		drawLine(x, (int) (ybase -gpscomputer.averageSpeed()), sisteX , (int) (ybase - gpscomputer.averageSpeed()));
+
+		
+		
+		
+		
+		
 	}
 }
